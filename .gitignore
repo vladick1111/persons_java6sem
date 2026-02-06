@@ -1,0 +1,9 @@
+# Игнорируем скомпилированные файлы
+bin/
+target/
+.settings/
+.project
+.classpath
+Servers/
+build/
+target/

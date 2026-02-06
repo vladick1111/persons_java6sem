@@ -1,0 +1,47 @@
+body {
+    width: 96%;
+    margin-left: 2%;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 150px;
+    border-radius: 5px;
+    background: #ccccff;
+    position: relative;
+}
+
+#top-image {
+    height: 130px;
+    width: 130px;
+    top: 20px;
+    background: #6699ff;
+    position: absolute;
+    left: 5%;
+    border-radius: 5px;
+}
+
+#user-panel {
+    position: absolute;
+    top: 20px;
+    right: 5%;
+    padding: 10px;
+    background: #9999ff;
+    border-radius: 5px;
+}
+
+#main {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+footer {
+    height: 80px;
+    background: #6184aa;
+    border-radius: 0 0 5px 5px;
+    color: white;
+    text-align: center;
+    padding-top: 30px;
+}
