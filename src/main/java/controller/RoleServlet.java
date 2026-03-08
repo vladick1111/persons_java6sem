@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public class RoleServlet extends HttpServlet {
 
     ConnectionProperty prop;
     String select_all_role = "SELECT id, rolename FROM roles";
-    ArrayList<Role> roles = new ArrayList<Role>();
+    String insert_role = "INSERT INTO roles(rolename) VALUES(?)";
+    ArrayList<Role> roles = new ArrayList<>();
     String userPath;
 
     public RoleServlet() throws FileNotFoundException, IOException {
@@ -59,6 +61,22 @@ public class RoleServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        String name = request.getParameter("namerole");
+
+        if (name != null && !name.isEmpty()) {
+            EmpConnBuilder builder = new EmpConnBuilder();
+            try (Connection conn = builder.getConnection();
+                 PreparedStatement preparedStatement = conn.prepareStatement(insert_role)) {
+
+                preparedStatement.setString(1, name);
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
         doGet(request, response);
     }
 }

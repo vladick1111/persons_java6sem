@@ -3,6 +3,7 @@ package controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class PersonsServlet extends HttpServlet {
     ConnectionProperty prop;
     String select_all_person = "SELECT id, firstname, lastname, phone, email, roleid FROM persons";
     String select_all_role = "SELECT id, rolename FROM roles";
+    String insert_person = "INSERT INTO persons(roleid, firstname, lastname, phone, email) VALUES(?,?,?,?,?)";
     ArrayList<Role> roles = new ArrayList<>();
     ArrayList<Person> persons = new ArrayList<>();
     String userPath;
@@ -95,6 +97,34 @@ public class PersonsServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        // ✅ ИСПРАВЛЕНО: имена полей совпадают с формой
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String roleParam = request.getParameter("role");
+
+        if (firstName != null && lastName != null && roleParam != null) {
+            EmpConnBuilder builder = new EmpConnBuilder();
+            try (Connection conn = builder.getConnection();
+                 PreparedStatement preparedStatement = conn.prepareStatement(insert_person)) {
+
+                Long roleId = Long.parseLong(roleParam);
+
+                preparedStatement.setLong(1, roleId);
+                preparedStatement.setString(2, firstName);
+                preparedStatement.setString(3, lastName);
+                preparedStatement.setString(4, phone);
+                preparedStatement.setString(5, email);
+
+                preparedStatement.executeUpdate();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+
         doGet(request, response);
     }
 }
