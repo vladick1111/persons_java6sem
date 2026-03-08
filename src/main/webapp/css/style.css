@@ -1,47 +1,105 @@
-body {
-    width: 96%;
-    margin-left: 2%;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    height: 150px;
-    border-radius: 5px;
-    background: #ccccff;
-    position: relative;
-}
-
-#top-image {
-    height: 130px;
-    width: 130px;
-    top: 20px;
-    background: #6699ff;
-    position: absolute;
-    left: 5%;
-    border-radius: 5px;
-}
-
-#user-panel {
-    position: absolute;
-    top: 20px;
-    right: 5%;
-    padding: 10px;
-    background: #9999ff;
-    border-radius: 5px;
-}
+/* Добавь в конец существующего файла */
 
 #main {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f0f0f0;
+    margin-top: 3px;
+}
+
+#main .leftAside {
+    float: left;
+    position: relative;
+    width: 650px;
+    background: #ccccff;
+    border-radius: 5px;
+    height: 100%;
+}
+
+#main .leftAside p {
+    width: 96%;
+    margin-left: 2%;
+    text-align: justify;
+}
+
+#main .leftAside h3 {
+    margin: 0px;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 96%;
+    padding: 5px 0px 5px 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: #76a5fc;
+    text-align: center;
+}
+
+#main .leftAside table {
+    margin: 5px;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 96%;
+    padding: 5px 0px 5px 0px;
+    border-radius: 0px 0px 5px 5px;
+    background: #76a5fc;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+#main article {
+    margin-left: 660px;
+    margin-bottom: 5px;
+    background: #88aabb;
+    border: 1px solid #40658d;
     border-radius: 5px;
 }
 
-footer {
-    height: 80px;
-    background: #6184aa;
-    border-radius: 0 0 5px 5px;
-    color: white;
+#main article h3 {
+    margin: 0px;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 96%;
+    padding: 5px 0px 5px 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: #76a5fc;
+    text-align: left;
+}
+
+#main article .text-article {
+    padding: 5px;
+    font-size: 15px;
+    background: #cce6fc;
+}
+
+#main article .text-article label {
+    margin-right: 10px;
+    width: 150px;
+    display: inline-block;
+}
+
+#main article .text-article input,
+#main article .text-article select {
+    width: 300px;
+    padding: 3px;
+}
+
+#main .leftAside table tr td {
     text-align: center;
-    padding-top: 30px;
+    padding: 5px;
+}
+
+thead {
+    background-color: #3f87a6;
+    color: #fff;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e6f2ff;
 }
