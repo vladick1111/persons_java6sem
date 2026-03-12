@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <meta charset="UTF-8">
-    <title>Сотрудники</title>
+    <title>Редактирование сотрудника</title>
 </head>
 <body>
     <jsp:include page="jspf/header.jsp" />
@@ -15,83 +15,70 @@
             <h3>Список сотрудников</h3>
             <table class="table table-sm table-bordered">
                 <thead>
-                    <tr>
-                        <th>Код</th>
-                        <th>Фамилия</th>
-                        <th>Имя</th>
-                        <th>Должность</th>
-                        <th>Телефон</th>
-                        <th>Email</th>
-                        <th>Редакт.</th>
-                        <th>Удалить</th>
-                    </tr>
+                    <tr><th>Код</th><th>Фамилия</th><th>Имя</th><th>Должность</th><th>Телефон</th><th>Email</th></tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="person" items="${persons}">
+                    <c:forEach var="p" items="${persons}">
                         <tr>
-                            <td>${person.id}</td>
-                            <td>${person.lastName}</td>
-                            <td>${person.firstName}</td>
-                            <td>${person.role.nameRole}</td>
-                            <td>${person.phone}</td>
-                            <td>${person.email}</td>
-                            <td>
-                                <a href='<c:url value="/editperson?id=${person.id}" />' class="btn btn-outline-primary btn-sm">
-                                    <img src="images/icon-edit.png" alt="ред" width="20" height="20">
-                                </a>
-                            </td>
-                            <td>
-                                <a href='<c:url value="/deleteperson?id=${person.id}" />' class="btn btn-outline-danger btn-sm">
-                                    <img src="images/icon-delete.png" alt="уд" width="20" height="20">
-                                </a>
-                            </td>
+                            <td>${p.id}</td>
+                            <td>${p.lastName}</td>
+                            <td>${p.firstName}</td>
+                            <td>${p.role.nameRole}</td>
+                            <td>${p.phone}</td>
+                            <td>${p.email}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </aside>
-
         <section>
             <article>
-                <h3>Добавить сотрудника</h3>
+                <h3>Редактирование сотрудника</h3>
                 <div class="text-article">
                     <form method="POST" action="">
+                        <input type="hidden" name="id" value="${personsEdit[0].id}" />
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Код</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" readonly value="${personsEdit[0].id}" />
+                            </div>
+                        </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Имя</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="firstName" />
+                                <input type="text" class="form-control" name="firstName" value="${personsEdit[0].firstName}" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Фамилия</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="lastName" />
+                                <input type="text" class="form-control" name="lastName" value="${personsEdit[0].lastName}" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Телефон</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="phone" />
+                                <input type="text" class="form-control" name="phone" value="${personsEdit[0].phone}" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" />
+                                <input type="email" class="form-control" name="email" value="${personsEdit[0].email}" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-3 col-form-label">Должность</label>
                             <div class="col-sm-6">
                                 <select name="role" class="form-control">
-                                    <option disabled selected>Выберите должность</option>
                                     <c:forEach var="role" items="${roles}">
-                                        <option value="${role.id}">${role.nameRole}</option>
+                                        <option value="${role.id}" ${role.id == personsEdit[0].idRole ? 'selected' : ''}>${role.nameRole}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Добавить</button>
+                        <button type="submit" class="btn btn-primary">Редактировать</button>
+                        <a href="persons" class="btn btn-secondary">Отмена</a>
                     </form>
                 </div>
             </article>

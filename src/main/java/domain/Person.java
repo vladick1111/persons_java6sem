@@ -11,6 +11,7 @@ public class Person {
 
     public Person() {}
 
+    // Конструктор с Role
     public Person(Long id, String firstName, String lastName, 
                   String phone, String email, Long idRole, Role role) {
         this.id = id;
@@ -22,6 +23,17 @@ public class Person {
         this.role = role;
     }
 
+    public Person(Long id, String firstName, String lastName, 
+                  String phone, String email, Long idRole) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.idRole = idRole;
+        this.role = null;
+    }
+
     // Геттеры
     public Long getId() { return id; }
     public String getFirstName() { return firstName; }
@@ -31,7 +43,7 @@ public class Person {
     public Long getIdRole() { return idRole; }
     public Role getRole() { return role; }
 
-    // Сеттеры (если нужны)
+    // Сеттеры
     public void setId(Long id) { this.id = id; }
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
